@@ -1,0 +1,17 @@
+ul.linklist {
+    list-style-type: none;
+}
+
+li.linklist-item {
+    display: inline-block;
+    padding-right: 20px;
+    font-size: large;
+    font-weight: 600;
+}
+
+.shop-label {
+    background-color: #0064FF !important;
+    color: white !important;
+    padding: 3px 4px !important;
+    font-size: xx-small !important;
+}

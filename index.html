@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Brodinski</title>
+
+        <link href="css/semantic.min.css" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+        <link href="css/style.css" rel="stylesheet">
+
+    </head>
+
+    <body style="background-color: #000; color: #fff;">
+
+        <div class="ui container">
+            <div class="ui one column center aligned stackable grid">
+                <div class="column six wide">
+                    <img src="/img/logo.jpg" width="100px" alt="brodinski logo" style="padding-top: 25px">
+                </div>
+            </div>
+
+            <div class="ui one column center aligned stackable grid">
+                <div class="column">
+                    <ul class="linklist">
+
+                        <li class="linklist-item">
+                            <a href="https://shop.brodinski.net">shop</a>
+                            <span class="ui label shop-label">NEW</span>
+                        </li>
+
+                        <li class="linklist-item">
+                            <a href="https://www.facebook.com/brodinski/">facebook</a>
+                        </li>
+
+                        <li class="linklist-item">
+                            <a href="https://www.instagram.com/louisbrodinski/">instagram</a>
+                        </li>
+
+                        <li class="linklist-item">
+                            <a href="https://twitter.com/brodinski">twitter</a>
+                        </li>
+
+                        <li class="linklist-item">
+                            <a href="https://soundcloud.com/brodinskiofficial">soundcloud</a>
+                        </li>
+
+                        <li class="linklist-item">
+                            <a href="https://play.spotify.com/artist/0ZurilbRp6KwW6dpaw4pEK">spotify</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ui one column center aligned stackable grid" style="padding-top: 30px" id="gigs">
+                <div class="column six wide">
+                    <h2 class="center aligned header" style="text-transform: uppercase">Upcoming tour dates</h2>
+                    <div class="ui active centered inline loader" v-if="loading"></div>
+                    <table class="ui very basic table" style="color: #fff" v-if="gigs && gigs.length>0">
+                        <tbody>
+                            <tr v-for="g in gigs" style="border-top: 1px solid #848484;">
+                                <td style="border-top: 1px solid #848484;">
+                                    <h4 class="ui header">
+                                        <div class="content" style="color: #D40000;">
+                                            {{ getPrintableDate(g.event.eventdate) }}
+                                            <div class="sub header" style="font-weight: bold; color: #fff">
+                                                {{ g.event.venue }}
+                                            </div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td style="text-align: right; border-top: 1px solid #848484;">
+                                    {{ g.event.city }}, {{ g.event.country }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3 class="center aligned header" v-if="gigs && gigs.length==0" style="color: #AEAEAE">Sorry guyz, no upcoming tour dates yet</h3>
+                    <h3 class="center aligned header" v-if="retrievingGigsError" style="color: #AEAEAE">Sorry guyz, an error occured while retrieving the upcoming gigs... maybe try again later!</h3>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/moment.min.js"></script>
+        <script src="js/vue.js"></script>
+        <script src="js/jquery.min.js"></script>
+
+        <script>
+            (function(jQuery) {
+
+                var v = new Vue({
+                    el: '#gigs',
+                    data: {
+                        loading: true,
+                        gigsGigatoolsUrl: "https://gigs.gigatools.com/u/brodi.json?callback=?",
+                        gigs: null,
+                        retrievingGigsError: false
+                    },
+                    methods: {
+                        retrieveGigs: function () {
+                            this.retrievingGigsError = false;
+
+                            jQuery.getJSON(this.gigsGigatoolsUrl, function (data) {
+                                this.loading = false;
+                                this.gigs = data[1];
+                                debugger;
+                            }.bind(this), function(){
+                                this.loading = false;
+                                this.retrievingGigsError = true;
+                            }.bind(this));
+
+                        },
+                        getPrintableDate: function(string){
+                            return moment(string).format('LL');
+                        }
+                    }
+                });
+                v.retrieveGigs();
+
+            })(jQuery);
+
+        </script>
+
+    </body>
+
+</html>
