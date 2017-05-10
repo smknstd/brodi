@@ -7,6 +7,7 @@ li.linklist-item {
     padding-right: 20px;
     font-size: large;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .shop-label {
@@ -14,4 +15,35 @@ li.linklist-item {
     color: white !important;
     padding: 3px 4px !important;
     font-size: xx-small !important;
+}
+
+.menu {
+    text-transform: uppercase;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    opacity: 0.7;
+}
+
+ul.socials > li > a {
+    color: #c13030;
+    text-transform: uppercase;
+}
+
+ul.socials > li > a > i {
+    font-size: 40px;
+    padding-top: 40px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+
+    .small-logo{
+        display: none !important;
+    }
+
 }

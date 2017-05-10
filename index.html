@@ -21,47 +21,153 @@
 
     <body style="background-color: #000; color: #fff;">
 
-        <div class="ui container">
+        <div class="ui text container" id="homepage">
             <div class="ui one column center aligned stackable grid">
-                <div class="column six wide">
-                    <img src="img/logo.jpg" width="100px" alt="brodinski logo" style="padding-top: 25px">
+                <div class="column three wide small-logo">
+                    <img src="img/logo_brodi.png" width="60px" alt="brodinski logo" style="padding-top: 25px">
+                </div>
+                <div class="column ten wide">
+                    <img src="img/logo_typo_brodi.png" width="100%" alt="brodinski logo" style="padding-top: 25px">
+                </div>
+                <div class="column three wide small-logo">
+                    <img src="img/logo_brodi.png" width="60px" alt="brodinski logo" style="padding-top: 25px">
                 </div>
             </div>
 
             <div class="ui one column center aligned stackable grid">
                 <div class="column">
-                    <ul class="linklist">
+                    <ul class="linklist menu">
 
                         <li class="linklist-item">
-                            <a href="https://shop.brodinski.net">shop</a>
-                            <span class="ui label shop-label">NEW</span>
+                            <a @click="switchTab('music')">music</a>
                         </li>
 
                         <li class="linklist-item">
-                            <a href="https://www.facebook.com/brodinski/">facebook</a>
+                            <a @click="switchTab('tour')">tour</a>
                         </li>
 
                         <li class="linklist-item">
-                            <a href="https://www.instagram.com/louisbrodinski/">instagram</a>
+                            <a @click="switchTab('social')">social</a>
                         </li>
 
                         <li class="linklist-item">
-                            <a href="https://twitter.com/brodinski">twitter</a>
+                            <a href="mailto:lucia@brodinski.fr">contact</a>
                         </li>
 
                         <li class="linklist-item">
-                            <a href="https://soundcloud.com/brodinskiofficial">soundcloud</a>
+                            <a href="https://shop.brodinski.fr">shop</a>
                         </li>
 
                         <li class="linklist-item">
-                            <a href="https://play.spotify.com/artist/0ZurilbRp6KwW6dpaw4pEK">spotify</a>
+                            <a href="http://brodinski.net" target="_blank">brava</a>
                         </li>
 
                     </ul>
                 </div>
             </div>
 
-            <div class="ui one column center aligned stackable grid" style="padding-top: 30px" id="gigs">
+            <div class="ui two column center aligned stackable grid" style="padding-top: 30px" v-if="tab == 'music'">
+
+                <div class="column">
+                    <table class="ui celled padded unstackable table">
+                        <tbody>
+                            <tr class="clickable-row" data-href="https://play.spotify.com/artist/0ZurilbRp6KwW6dpaw4pEK" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/spotify.png" width="100px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="https://play.spotify.com/artist/0ZurilbRp6KwW6dpaw4pEK" target="_blank">Listen</a>
+                                </td>
+                            </tr>
+                            <tr class="clickable-row" data-href="https://itunes.apple.com/fr/artist/brodinski/id270248904" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/apple-music.png" width="100px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="https://itunes.apple.com/fr/artist/brodinski/id270248904" target="_blank">Listen</a>
+                                </td>
+                            </tr>
+                            <tr class="clickable-row" data-href="https://itunes.apple.com/fr/artist/brodinski/id270248904" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/itunes.png" width="100px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="https://itunes.apple.com/fr/artist/brodinski/id270248904" target="_blank">Buy</a>
+                                </td>
+                            </tr>
+                            <tr class="clickable-row" data-href="https://www.youtube.com/user/BrodinskiOfficial" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/youtube.png" width="70px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="https://www.youtube.com/user/BrodinskiOfficial" target="_blank">Watch</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="column">
+                    <table class="ui celled padded unstackable table">
+                        <tbody>
+                            <tr class="clickable-row" data-href="https://play.google.com/store/music/artist/Brodinski?id=Avztq5xaywuid54jkygr4hum7ja" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/google-play.png" width="100px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="https://play.google.com/store/music/artist/Brodinski?id=Avztq5xaywuid54jkygr4hum7ja" target="_blank">Buy</a>
+                                </td>
+                            </tr>
+                            <tr class="clickable-row" data-href="https://listen.tidal.com/artist/3625348" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/tidal.png" width="100px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="https://listen.tidal.com/artist/3625348" target="_blank">Listen</a>
+                                </td>
+                            </tr>
+                            <tr class="clickable-row" data-href="http://www.deezer.com/artist/166717" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/deezer.png" width="100px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="http://www.deezer.com/artist/166717" target="_blank">Listen</a>
+                                </td>
+                            </tr>
+                            <tr class="clickable-row" data-href="https://soundcloud.com/brodinskiofficial" height="81px">
+                                <td class="center aligned">
+                                    <img src="img/soundcloud.png" width="60px">
+                                </td>
+                                <td class="center aligned">
+                                    <a href="https://soundcloud.com/brodinskiofficial" target="_blank">Listen</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="ui one column center aligned stackable grid" style="padding-top: 30px" v-if="tab == 'social'">
+                <div class="column">
+                    <h2 class="center aligned header" style="text-transform: uppercase">FOLLOW US</h2>
+
+                    <ul class="linklist socials">
+                        <li class="linklist-item">
+                            <a href="https://www.facebook.com/brodinski/"><i class="fa fa-facebook" aria-hidden="true"></i>facebook</a>
+                        </li>
+
+                        <li class="linklist-item">
+                            <a href="https://www.instagram.com/louisbrodinski/"><i class="fa fa-instagram" aria-hidden="true"></i>instagram</a>
+                        </li>
+
+                        <li class="linklist-item">
+                            <a href="https://twitter.com/brodinski"><i class="fa fa-twitter" aria-hidden="true"></i>twitter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ui one column center aligned stackable grid" style="padding-top: 30px" v-if="tab == 'tour'">
                 <div class="column six wide">
                     <h2 class="center aligned header" style="text-transform: uppercase">Upcoming tour dates</h2>
                     <div class="ui active centered inline loader" v-if="loading"></div>
@@ -93,26 +199,36 @@
         <script src="js/moment.min.js"></script>
         <script src="js/vue.js"></script>
         <script src="js/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/54f5b4ac28.js"></script>
 
         <script>
             (function(jQuery) {
 
+                jQuery(document).ready(function($) {
+                    $(".clickable-row").click(function() {
+                        window.open($(this).data("href"));
+                    });
+                });
+
                 var v = new Vue({
-                    el: '#gigs',
+                    el: '#homepage',
                     data: {
                         loading: true,
                         gigsGigatoolsUrl: "https://gigs.gigatools.com/u/brodi.json?callback=?",
                         gigs: null,
-                        retrievingGigsError: false
+                        retrievingGigsError: false,
+                        tab: 'music'
                     },
                     methods: {
+                        switchTab: function(value){
+                          this.tab = value;
+                        },
                         retrieveGigs: function () {
                             this.retrievingGigsError = false;
 
                             jQuery.getJSON(this.gigsGigatoolsUrl, function (data) {
                                 this.loading = false;
                                 this.gigs = data[1];
-                                debugger;
                             }.bind(this), function(){
                                 this.loading = false;
                                 this.retrievingGigsError = true;
