@@ -19,6 +19,7 @@ li.linklist-item {
 
 .menu {
     text-transform: uppercase;
+    font-family: 'Arimo', Arial, sans-serif;
 }
 
 .clickable-row {

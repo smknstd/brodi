@@ -13,7 +13,7 @@
 
         <link href="css/semantic.min.css" rel="stylesheet">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato,Arimo" rel="stylesheet">
 
         <link href="css/style.css" rel="stylesheet">
 
@@ -55,7 +55,7 @@
                         </li>
 
                         <li class="linklist-item">
-                            <a href="https://shop.brodinski.fr">shop</a>
+                            <a href="http://shop.brodinski.fr">shop</a>
                         </li>
 
                         <li class="linklist-item">
@@ -168,7 +168,7 @@
             </div>
 
             <div class="ui one column center aligned stackable grid" style="padding-top: 30px" v-if="tab == 'tour'">
-                <div class="column six wide">
+                <div class="column ten wide">
                     <h2 class="center aligned header" style="text-transform: uppercase">Upcoming tour dates</h2>
                     <div class="ui active centered inline loader" v-if="loading"></div>
                     <table class="ui very basic table" style="color: #fff" v-if="gigs && gigs.length>0">
@@ -177,15 +177,15 @@
                                 <td style="border-top: 1px solid #848484;">
                                     <h4 class="ui header">
                                         <div class="content" style="color: #D40000;">
-                                            {{ getPrintableDate(g.event.eventdate) }}
+                                            {{ getPrintableDate(g.datetime) }}
                                             <div class="sub header" style="font-weight: bold; color: #fff">
-                                                {{ g.event.venue }}
+                                                {{ g.venue.name }}
                                             </div>
                                         </div>
                                     </h4>
                                 </td>
                                 <td style="text-align: right; border-top: 1px solid #848484;">
-                                    {{ g.event.city }}, {{ g.event.country }}
+                                    {{ g.venue.city }}, {{ g.venue.country }}
                                 </td>
                             </tr>
                         </tbody>
@@ -214,7 +214,7 @@
                     el: '#homepage',
                     data: {
                         loading: true,
-                        gigsGigatoolsUrl: "https://gigs.gigatools.com/u/brodi.json?callback=?",
+                        gigsGigatoolsUrl: "https://rest.bandsintown.com/artists/brodinski/events?app_id=landing",
                         gigs: null,
                         retrievingGigsError: false,
                         tab: 'music'
@@ -228,7 +228,7 @@
 
                             jQuery.getJSON(this.gigsGigatoolsUrl, function (data) {
                                 this.loading = false;
-                                this.gigs = data[1];
+                                this.gigs = data;
                             }.bind(this), function(){
                                 this.loading = false;
                                 this.retrievingGigsError = true;
